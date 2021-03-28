@@ -16,7 +16,10 @@ import javax.persistence.UniqueConstraint;
 
 // Table nous permet de parametrer notre table ici on indique que le nom de la
 // de notre contrainte unique sur email porte le nom student_email_unique
-// sans ça un nom aleatoire sera genéré par default
+// sans ça un nom aleatoire sera genéré par default, on precise aussi la
+// contrainte
+// de singularité des email ici car c'est seulemnt dans lannotation table que
+// qu'il est possible de definir et de nommé la contrainte
 @Table(name = "student", uniqueConstraints = {
     @UniqueConstraint(name = "student_email_unique", columnNames = "email") })
 
@@ -39,14 +42,18 @@ public class Student {
   @Column(name = "last_name", nullable = false, columnDefinition = "TEXT")
   private String lastName;
 
-  @Column(name = "email", nullable = false, columnDefinition = "TEXT", unique = true)
+  // on ne defini plus la contrainte unique ici car il est impossible quand
+  // on defini la contrainte ici de preciser son nom, donc on prefera la definir
+  // dans @table
+  // @Column(name = "email", nullable = false, columnDefinition = "TEXT", unique =
+  // true)
+  @Column(name = "email", nullable = false, columnDefinition = "TEXT")
   private String email;
 
   @Column(name = "age", nullable = false)
   private Integer age;
 
-  public Student(Long id, String firstName, String lastName, String email, Integer age) {
-    this.id = id;
+  public Student(String firstName, String lastName, String email, Integer age) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
