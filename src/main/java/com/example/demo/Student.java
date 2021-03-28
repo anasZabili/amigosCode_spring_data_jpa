@@ -1,14 +1,23 @@
 package com.example.demo;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 // entity dennote le fait que notre class sera une table
-@Entity
+// name est le nom de la Table de le code et la bdd par default le nom de la 
+// class est prise
+@Entity(name = "Student")
 public class Student {
   // cette annotation est indispensable elle notre clef primaire
   @Id
+  // sequenceGenerator permet de faire lautoincrement sur l'id
+  // l'alocation size est la pas d'increment en chaque nouveau id
+  @SequenceGenerator(name = "student_sequence", sequenceName = "student_sequence", allocationSize = 1)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_sequence")
   private Long id;
   private String firstName;
   private String lastName;
