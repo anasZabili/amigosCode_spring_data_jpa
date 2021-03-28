@@ -7,11 +7,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 // entity dennote le fait que notre class sera une table
 // name est le nom de la Table de le code et la bdd par default le nom de la 
 // class est prise
 @Entity(name = "Student")
+
+// Table nous permet de parametrer notre table ici on indique que le nom de la
+// de notre contrainte unique sur email porte le nom student_email_unique
+// sans ça un nom aleatoire sera genéré par default
+@Table(name = "student", uniqueConstraints = {
+    @UniqueConstraint(name = "student_email_unique", columnNames = "email") })
+
 public class Student {
   // cette annotation est indispensable elle notre clef primaire
   @Id
