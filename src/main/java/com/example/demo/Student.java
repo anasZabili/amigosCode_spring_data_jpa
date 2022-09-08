@@ -24,6 +24,7 @@ import javax.persistence.UniqueConstraint;
     @UniqueConstraint(name = "student_email_unique", columnNames = "email") })
 
 public class Student {
+    //All project is not written in English, there is another language
   // cette annotation est indispensable elle notre clef primaire
   @Id
   // sequenceGenerator permet de faire lautoincrement sur l'id
